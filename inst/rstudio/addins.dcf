@@ -1,0 +1,4 @@
+Name: Align Assign
+Description: Aligns assignment operators within a highlighted area.
+Binding: alignr
+Interactive: false

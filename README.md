@@ -46,7 +46,7 @@ copy_a <- a
 ```
 
 #### Demo 2
-Be mindful that highling the a chunk of code like the following and running the addin...
+Be mindful that highling a chunk of code with assignment operators on commented lines, like the following, and running the addin...
 ```{r}
 # This is a commented line with an assignment operator <-
 a <- 1:5
@@ -55,7 +55,7 @@ c <- 11:15
 # There is an assignment operator here, too <-
 ```
 
-...the result will look like this.
+...will result in this.
 ```{r}
 # This is a commented line with an assignment operator <-
 a                                                      <- 1:5

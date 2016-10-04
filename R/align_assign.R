@@ -1,5 +1,6 @@
 
 captureArea <- function() {
+  # Get context, find range, dump contents, and name with highlighted lines.
   capture <- rstudioapi::getActiveDocumentContext()
 
   range_start <- capture$selection[[1L]]$range$start[[1L]]
@@ -7,13 +8,13 @@ captureArea <- function() {
 
   capture_contents        <- capture$contents[range_start:range_end]
   names(capture_contents) <- range_start:range_end
-  capture_contents        <- capture_contents
   return(capture_contents)
 }
 
 
 findr <- function(find, where) {
 
+  # Find matches, extract positions, find furthest <-, get rows/cols to align.
   found  <- grep(find, where)
   regex_positions <- regexec(find, where)
   regex_positions <- regex_positions[found]
@@ -25,18 +26,23 @@ findr <- function(find, where) {
   furthest_row         <- doc_lines[found[max.pos]]
   furthest_column      <- max(assignment_positions)
 
-
   rows_to_align    <- doc_lines[found[-max.pos]]
   columns_to_align <- assignment_positions[-max.pos]
 
-  positions_list <- Map(c, rows_to_align, columns_to_align)
+  # Set location and text for insertText().
+  location <- Map(c, rows_to_align, columns_to_align)
 
-  insertText_num  <- furthest_column - columns_to_align
-  insertText_list <- vapply(insertText_num,
+  text_num  <- furthest_column - columns_to_align
+  text      <- vapply(text_num,
                             function(x) paste0(rep(" ", x), collapse = ""),
                             character(1))
 
-  rstudioapi::insertText(positions_list, insertText_list)
+  insertText_list <- list(location = location, text = text)
+  return(insertText_list)
+}
+
+insertr <- function(list) {
+  rstudioapi::insertText(list[["location"]], list[["text"]])
 }
 
 #' Align a highlighted region's assignment operators.
@@ -45,6 +51,7 @@ findr <- function(find, where) {
 #' Aligns the single caret operators (\code{<-}) with a highlighted region.
 #' @export
 alignr <- function() {
-  area <- captureArea()
-  findr("<-", area)
+  area  <- captureArea()
+  found <- findr("<-", area)
+  insertr(found)
 }

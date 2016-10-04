@@ -1,5 +1,7 @@
 # AlignAssign
 
+[![Build Status](https://travis-ci.org/seasmith/AlignAssign.svg?branch=master)](https://travis-ci.org/seasmith/AlignAssign)
+
 Align the assignment operators within a highlighted area.
 
 Before:

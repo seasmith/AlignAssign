@@ -1,6 +1,6 @@
 Package: AlignAssign
 Type: Package
-Title: Align the assignment operators within a highlighted area.
+Title: Align the assignment operators within a highlighted area
 Version: 0.1.0
 Authors@R: person("Luke", "Smith", email = "luke@protocolvital.info",
     role = c("aut", "cre"))
@@ -12,6 +12,8 @@ Description: A very simple aligner for a highlighted region's single caret
     addin also does not treat commented lines differently than uncommented
     lines. If there is an assignment operator within a highlighted comment line,
     then it will either align that operator or align other operators to it.
+Imports:
+    rstudioapi
 License: GPL-2
 Encoding: UTF-8
 LazyData: true

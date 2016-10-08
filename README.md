@@ -21,7 +21,7 @@ c   <- letters
 ![](inst/media/demo2.gif)
 
 ### What
-A very simple aligner for a highlighted region's single caret (`<-`) assignment operators. __It does not "reflow" your code if the alignment breaks the page width__ (it does not do anything like `Ctrl + Shift + /`). This addin also does not treat commented lines differently than uncommented lines. __If there is an assignment operator within a highlighted comment line, then it will either align that operator or align other operators to it.__
+A very simple aligner for a highlighted region's assignment operators (`<-`). __It does not "reflow" your code if the alignment breaks the page width__ (it does not do anything like `Ctrl + Shift + /`). This addin also does not treat commented lines differently to uncommented lines. __If there is an assignment operator within a highlighted comment line, then it will either align that operator or align other operators to it.__
 
 ### Install
 `devtools::install_github("seasmith/AlignAssign")`

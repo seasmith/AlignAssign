@@ -1,4 +1,9 @@
 Name: Align Assign
-Description: Aligns assignment operators within a highlighted area.
-Binding: alignr
+Description: Aligns '<-' assignment operators within a highlighted area.
+Binding: alignAssign
+Interactive: false
+
+Name: Align Assign 2
+Description: Aligns assignment '=' operators within a highlighted area.
+Binding: alignAssign2
 Interactive: false

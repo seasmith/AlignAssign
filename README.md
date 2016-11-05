@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/seasmith/AlignAssign.svg?branch=master)](https://travis-ci.org/seasmith/AlignAssign)
 
-Align the assignment operators within a highlighted area.
+Align the assignment operators (either `<-` or `=`) within a highlighted area.
 
 Before:
 ```{r}
@@ -21,7 +21,7 @@ c   <- letters
 ![](inst/media/demo2.gif)
 
 ### What
-A very simple aligner for a highlighted region's assignment operators (`<-`). __It does not "reflow" your code if the alignment breaks the page width__ (it does not do anything like `Ctrl + Shift + /`). This addin also does not treat commented lines differently to uncommented lines. __If there is an assignment operator within a highlighted comment line, then it will either align that operator or align other operators to it.__
+AlignAssign contains two addins whose purpose is to align all of either the  `<-` or `=` assignment operators within a highlighted region. It does not "reflow" your code if the alignment breaks the page width. This addin also does not treat commented lines differently to uncommented lines. __If there is either one of the assignment operators within a highlighted comment line, then it will either align that operator or align other operators to it.__
 
 ### Install
 `devtools::install_github("seasmith/AlignAssign")`
@@ -50,6 +50,25 @@ copy_a <- a
 ```
 
 #### Demo 2
+The above example also works for the `=` operator (where it may be most useful when listing elements in a list). Before...
+```{r}
+# Perosnal information
+list(surname = "Crichton",
+     firstName = "John",
+     address = NA,
+     occupation = "fugitive")
+```
+
+...after.
+```{r}
+# Perosnal information
+list(surname    = "Crichton",
+     firstName  = "John",
+     address    = NA,
+     occupation = "fugitive")
+```
+
+#### Demo 3
 Be mindful that highling a chunk of code which has assignment operators within commented lines, like the following, and running the addin...
 ```{r}
 # This is a commented line with an assignment operator <-
@@ -68,7 +87,7 @@ c                                                      <- 11:15
 # There is an assignment operator                      <- here, too
 ```
 
-#### Demo 3
+#### Demo 4
 There is also no special handling of assignment operators within a function. So, if you highlighted the entire chunk below and then ran the addin...
 ```{r}
 var1 <- letters

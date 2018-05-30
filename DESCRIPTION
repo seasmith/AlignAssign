@@ -1,7 +1,7 @@
 Package: AlignAssign
 Type: Package
 Title: Align the assignment operators within a highlighted area
-Version: 0.3.0
+Version: 0.3.0.9000
 Authors@R: person("Luke", "Smith", email = "luke@protocolvital.info",
     role = c("aut", "cre"))
 URL: https://github.com/seasmith/AlignAssign
@@ -15,4 +15,4 @@ Imports:
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1

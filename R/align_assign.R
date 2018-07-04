@@ -65,13 +65,15 @@ insertr <- function(list) {
 
 #' Align a highlighted region's assignment operators.
 #'
+#' @param rgx_op Regex for assignment operator
 #' @return
-#' Aligns the single caret operators (\code{<-}) within a highlighted region.
+#' Aligns the given or guessed operator within a highlighted region.
 #' @export
-alignAssign <- function() {
+alignAssign <- function(rgx_op = NULL) {
   capture <- capture()
   area    <- captureArea(capture)
-  loc     <- findRegEx("<-", area)
+  if (is.null(rgx_op)) rgx_op <- guess_operator(area)
+  loc     <- findRegEx(rgx_op, area)
   insertList <- assembleInsert(loc)
   insertr(insertList)
 }
@@ -81,10 +83,48 @@ alignAssign <- function() {
 #' @return Aligns the equal sign assignment operators (\code{=}) within a
 #' highlighted region.
 #' @export
-alignAssign2 <- function() {
-  capture <- capture()
-  area    <- captureArea(capture)
-  loc     <- findRegEx("=", area)
-  insertList <- assembleInsert(loc)
-  insertr(insertList)
+alignAssignEqual <- function() {
+  alignAssign("=")
+}
+
+#' Align a highlighted region's assignment operators.
+#'
+#' @return Aligns the single caret operators (\code{<-}) within a
+#' highlighted region.
+#' @export
+alignAssignArrow <- function() {
+  alignAssign("<-")
+}
+
+guess_operator <- function(area = captureArea(capture())) {
+  area <- strsplit(area, "\n")
+  counts <- list(
+    "=" = vapply(gregexpr("=", area, fixed = TRUE), function(x) length(x[x > 0]), integer(1)),
+    "<-" = vapply(gregexpr("<-", area, fixed = TRUE), function(x) length(x[x > 0]), integer(1))
+  )
+  # Does one appear in all? (keep)
+  all_ones <- vapply(lapply(counts, function(x) x == 1), all, logical(1))
+  if (sum(all_ones) == 1) return(names(all_ones)[all_ones])
+
+  # Does only one appear at all? (keep)
+  nones <- vapply(lapply(counts, function(x) x == 0), all, logical(1))
+  if (sum(nones) == 1) {
+    return(names(counts)[!nones])
+  } else if (sum(nones) == 2) {
+    stop("Neither `=` or `<-` are used in the selected lines")
+  }
+
+  # if not in all or none then are either duplicated on a line? (discard)
+  mult_in_lines <- vapply(lapply(counts, function(x) x > 1), sum, integer(1))
+  if (sum(mult_in_lines) == 1) return(names(counts)[!mult_in_lines])
+
+  # fall back to max count
+  some_ones <- vapply(lapply(counts, function(x) x == 1), sum, integer(1))
+  all_same <- length(unique(counts)) == 1
+  if (!all_same) {
+    return(names(which.max(counts)))
+  } else {
+    warning("Couldn't guess the operator for alignment, trying ` <- `")
+    return("<-")
+  }
 }

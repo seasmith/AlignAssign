@@ -2,8 +2,10 @@ Package: AlignAssign
 Type: Package
 Title: Align the assignment operators within a highlighted area
 Version: 0.3.0.9000
-Authors@R: person("Luke", "Smith", email = "luke@protocolvital.info",
-    role = c("aut", "cre"))
+Authors@R: c(
+    person("Luke", "Smith", , "lukedansmi@sbcglobal.net", role = c("aut", "cre")),
+    person("Garrick", "Aden-Buie", , role = "aut")
+    )
 URL: https://github.com/seasmith/AlignAssign
 BugReports: https://github.com/seasmith/AlignAssign/issues
 Description: A very simple aligner for a highlighted region's '<-' or '='

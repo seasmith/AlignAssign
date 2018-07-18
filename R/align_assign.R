@@ -122,7 +122,7 @@ guess_operator <- function(area = captureArea(capture())) {
   some_ones <- vapply(lapply(counts, function(x) x == 1), sum, integer(1))
   all_same <- length(unique(counts)) == 1
   if (!all_same) {
-    return(names(which.max(counts)))
+    return(names(which.max(some_ones)))
   } else {
     warning("Couldn't guess the operator for alignment, trying ` <- `")
     return("<-")

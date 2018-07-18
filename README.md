@@ -31,7 +31,7 @@ AlignAssign contains two addins whose purpose is to align all of either the `<-`
 ### Install
 
 ``` r
-devtools::install_github("seasmith/AlignAssign")`
+devtools::install_github("seasmith/AlignAssign")
 ```
 
 ### Examples

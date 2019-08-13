@@ -3,6 +3,11 @@ Description: Aligns '<-' or '=' assignment operators within a highlighted area.
 Binding: alignAssign
 Interactive: false
 
+Name: Align Cursors
+Description: Aligns all cursors. Use Ctrl/Cmd + Alt + click to insert multiple cursors.
+Binding: alignCursor
+Interactive: false
+
 Name: Align Assign Arrow
 Description: Aligns '<-' assignment operators within a highlighted area.
 Binding: alignAssignArrow

@@ -1,7 +1,7 @@
 Package: AlignAssign
 Type: Package
 Title: Align the assignment operators within a highlighted area
-Version: 0.4.0
+Version: 0.5.0
 Authors@R: c(
     person("Luke", "Smith", , "lukedansmi@sbcglobal.net", role = c("aut", "cre")),
     person("Garrick", "Aden-Buie", , role = "aut")

@@ -1,10 +1,11 @@
 
-AlignAssign
-===========
+# AlignAssign
 
-[![Build Status](https://travis-ci.org/seasmith/AlignAssign.svg?branch=master)](https://travis-ci.org/seasmith/AlignAssign)
+[![Build
+Status](https://travis-ci.org/seasmith/AlignAssign.svg?branch=master)](https://travis-ci.org/seasmith/AlignAssign)
 
-Align the assignment operators (either `<-` or `=`) within a highlighted area.
+Align the assignment operators (either `<-` or `=`) within a highlighted
+area.
 
 Before:
 
@@ -24,21 +25,46 @@ c   <- letters
 
 ![](inst/media/demo2.gif)
 
+#### Align Cursors
+
+For alignment of any text, you can align multiple cursors with the
+**Align Cursors** addin. Add multiple cursors to your document by
+holding <kbd>Ctrl</kbd>/<kbd>Cmd</kbd> + <kbd>Alt</kbd> and clicking in
+the RStudio editor, or by holding <kbd>Alt</kbd> and clicking and
+dragging the mouse.
+
+![](inst/media/demo_cursors.gif)
+
 ### What
 
-AlignAssign contains two addins whose purpose is to align all of either the `<-` (`Align Assign`) or `=` (`Align Assign 2`) assignment operators within a highlighted region. It does not "reflow" your code if the alignment breaks the page width. This addin also does not treat commented lines differently to uncommented lines. **If there is either one of the assignment operators within a highlighted comment line, then it will either align that operator or align other operators to it.**
+AlignAssign contains three addins. Two addins align all of either the
+`<-` (`Align Assign`) or `=` (`Align Assign 2`) assignment operators
+within a highlighted region and the third aligns multiple cursors across
+lines to the same column.
 
-### Install
+None of the addins “reflow” your code if the alignment breaks the page
+width. They also does not treat commented lines differently to
+uncommented lines. **If there is either one of the assignment operators
+within a highlighted comment line, then it will either align that
+operator or align other operators to it.**
+
+## Install
 
 ``` r
-devtools::install_github("seasmith/AlignAssign")
+devtools::install_github("seasmith/AlignAssign")`
 ```
 
-### Examples
+You can assign each alignment addin action to a specific keyboard
+shortcut in RStudio in the *Modify keyboard shortcuts…* menu option
+under the *Tools* menu.
 
-#### Align `<-`'s with Align Assign
+## Examples
 
-When you highlight the following chunk of code (region) - whether you highlight the entirity or just a portion of the first and last lines - and then run the `Align Assign` addin...
+#### Align `<-`’s with Align Assign
+
+When you highlight the following chunk of code (region) - whether you
+highlight the entirity or just a portion of the first and last lines -
+and then run the `Align Assign` addin…
 
 ``` r
 # This is a commented line
@@ -49,7 +75,7 @@ copy_a <- a
 # More comments
 ```
 
-...the result will look like this.
+…the result will look like this.
 
 ``` r
 # This is a commented line
@@ -60,9 +86,10 @@ copy_a <- a
 # More comments
 ```
 
-#### Align `=`'s with Align Assign 2
+#### Align `=`’s with Align Assign 2
 
-The above example also works for the `=` operator when using the other addin, `Align Assign 2`. Before...
+The above example also works for the `=` operator when using the other
+addin, `Align Assign 2`. Before…
 
 ``` r
 # Perosnal information
@@ -72,7 +99,7 @@ list(surname = "Crichton",
      occupation = "fugitive")
 ```
 
-...after.
+…after.
 
 ``` r
 # Perosnal information
@@ -84,7 +111,9 @@ list(surname    = "Crichton",
 
 #### Behavior of commented-out assignment operators
 
-Be mindful that highling a chunk of code which has assignment operators within commented lines, like the following, and running the `Align Assign 2` addin...
+Be mindful that highling a chunk of code which has assignment operators
+within commented lines, like the following, and running the `Align
+Assign 2` addin…
 
 ``` r
 # This is a commented line with an assignment operator <-
@@ -94,7 +123,7 @@ c <- 11:15
 # There is an assignment operator <- here, too
 ```
 
-...will result in something like this.
+…will result in something like this.
 
 ``` r
 # This is a commented line with an assignment operator <-
@@ -106,7 +135,9 @@ c                                                      <- 11:15
 
 #### Not so smart aligner
 
-There is also no special handling of assignment operators within a function. So, if you highlighted the entire chunk below and then ran the `Align Assign` addin...
+There is also no special handling of assignment operators within a
+function. So, if you highlighted the entire chunk below and then ran the
+`Align Assign` addin…
 
 ``` r
 var1 <- letters
@@ -124,7 +155,7 @@ list.pos <- function(name, lst){
 positions <- list.pos(c("a", "bbb", "c"), var2)
 ```
 
-...the result will look like this.
+…the result will look like this.
 
 ``` r
 var1                                     <- letters

@@ -24,15 +24,26 @@ c   <- letters
 
 ![](inst/media/demo2.gif)
 
-### What
-AlignAssign contains two addins whose purpose is to align all of either the  `<-` (`Align Assign`) or `=` (`Align Assign 2`) assignment operators within a highlighted region. It does not "reflow" your code if the alignment breaks the page width. This addin also does not treat commented lines differently to uncommented lines. __If there is either one of the assignment operators within a highlighted comment line, then it will either align that operator or align other operators to it.__
+#### Align Cursors
 
-### Install
+For alignment of any text, you can align multiple cursors with the **Align Cursors** addin.
+Add multiple cursors to your document by holding <kbd>Ctrl</kbd>/<kbd>Cmd</kbd> + <kbd>Alt</kbd> and clicking in the RStudio editor, or by holding <kbd>Alt</kbd> and clicking and dragging the mouse.
+
+![](inst/media/demo_cursors.gif)
+
+### What
+AlignAssign contains three addins. Two addins align all of either the  `<-` (`Align Assign`) or `=` (`Align Assign 2`) assignment operators within a highlighted region and the third aligns multiple cursors across lines to the same column. 
+
+None of the addins "reflow" your code if the alignment breaks the page width. They also does not treat commented lines differently to uncommented lines. __If there is either one of the assignment operators within a highlighted comment line, then it will either align that operator or align other operators to it.__
+
+## Install
 ```{r install, eval=FALSE}
 devtools::install_github("seasmith/AlignAssign")`
 ```
 
-### Examples
+You can assign each alignment addin action to a specific keyboard shortcut in RStudio in the *Modify keyboard shortcuts...* menu option under the *Tools* menu.
+
+## Examples
 
 #### Align `<-`'s with Align Assign
 When you highlight the following chunk of code (region) - whether you highlight the entirity or just a portion of the first and last lines - and then run the `Align Assign` addin...

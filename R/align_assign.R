@@ -128,3 +128,45 @@ guess_operator <- function(area = captureArea(capture())) {
     return("<-")
   }
 }
+
+alignCursor <- function() {
+  context <- rstudioapi::getActiveDocumentContext()
+
+  cursors <- lapply(context$selection, function(x) {
+    rbind(x$range$start, x$range$end)
+  })
+
+  if (length(cursors) < 2) {
+    message("Nothing to align, did you place multiple cursors in the document?")
+    return()
+  }
+
+  x <- as.data.frame(do.call("rbind", cursors))
+  x <- unique(x)
+  x <- x[order(x$row), ]
+
+  # used to keep track of added space if multiple cursors per line
+  added_spaces <- data.frame(row = unique(x$row), nt = 0L)
+
+  x$group <- sequence(rle(x$row)$lengths)
+  x <- split(x, x$group)
+  for (xg in x) {
+    xg            <- merge(xg, added_spaces, by = "row")
+    xg$column     <- xg$column + xg$nt
+    xg$n          <- max(xg$column) - xg$column
+    added_spaces  <- update_spaces(added_spaces, xg)
+    spaces_to_add <- make_space(xg$n)
+    locs          <- Map(c, xg$row, xg$column)
+    rstudioapi::insertText(locs, spaces_to_add, id = context$id)
+  }
+}
+
+make_space <- function(n) {
+  vapply(n, function(nn) strrep(' ', nn), " ")
+}
+
+update_spaces <- function(a, x) {
+  a <- merge(a, x[, c("row", "n")], by = "row")
+  a$nt <- a$nt + x$n
+  a[, c("row", "nt")]
+}

@@ -132,7 +132,9 @@ guess_operator <- function(area = captureArea(capture())) {
 alignCursor <- function() {
   context <- rstudioapi::getActiveDocumentContext()
 
-  cursors <- lapply(context$selection, function(x) unclass(x$range$start))
+  cursors <- lapply(context$selection, function(x) {
+    rbind(x$range$start, x$range$end)
+  })
 
   if (length(cursors) < 2) {
     message("Nothing to align, did you place multiple cursors in the document?")
@@ -140,6 +142,7 @@ alignCursor <- function() {
   }
 
   x <- as.data.frame(do.call("rbind", cursors))
+  x <- unique(x)
   x <- x[order(x$row), ]
 
   # used to keep track of added space if multiple cursors per line

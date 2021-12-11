@@ -8,10 +8,10 @@ Authors@R: c(
     )
 URL: https://github.com/seasmith/AlignAssign
 BugReports: https://github.com/seasmith/AlignAssign/issues
-Description: A very simple aligner for a highlighted region's '<-' or '='
-    assignment operators. It does not "reflow" your code if the alignment
-    breaks the page width. This addin also does not treat commented lines 
-    differently than uncommented lines.
+Description: 'RStudio' addin that horizontally aligns assignment 
+    operators across consecutively selected statements. It does not reflow
+    your code if the alignment breaks the page width and it does
+    not treat commented lines differently than uncommented lines.
 Imports:
     rstudioapi
 License: GPL-2

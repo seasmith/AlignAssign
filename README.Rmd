@@ -38,7 +38,7 @@ None of the addins "reflow" your code if the alignment breaks the page width. Th
 
 ## Install
 ```{r install, eval=FALSE}
-devtools::install_github("seasmith/AlignAssign")`
+devtools::install_github("seasmith/AlignAssign")
 ```
 
 You can assign each alignment addin action to a specific keyboard shortcut in RStudio in the *Modify keyboard shortcuts...* menu option under the *Tools* menu.

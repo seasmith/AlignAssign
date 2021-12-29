@@ -5,8 +5,8 @@ capture <- function() {
 
 captureArea <- function(capture) {
   # Find range
-  range_start <- capture$selection[[1L]]$range$start[[1L]]
   range_end   <- capture$selection[[1L]]$range$end[[1L]]
+  range_start <- min(range_end-1,capture$selection[[1L]]$range$start[[1L]])
 
   # Dump contents and use highlighted lines as names.
   contents        <- capture$contents[range_start:range_end]

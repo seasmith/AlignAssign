@@ -51,7 +51,7 @@ operator or align other operators to it.**
 ## Install
 
 ``` r
-devtools::install_github("seasmith/AlignAssign")`
+devtools::install_github("seasmith/AlignAssign")
 ```
 
 You can assign each alignment addin action to a specific keyboard
